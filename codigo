@@ -1,0 +1,13 @@
+function [integ,v_real,e_t]=simpson_1_3(f,a,b,n)
+h=(b-a)/n;
+sum=f(a);
+
+for i=1:2:n-2
+  sum=sum+4*f(i*h)+2*f((i+1)*h);
+endfor
+sum=sum+4*f(b-1)+f(b);
+integ=sum*h/3;
+
+v_real=integral(f,a,b);
+e_t=abs(v_real-integ)/v_real*100;
+end
